@@ -1,0 +1,13 @@
+# 问题文件（不上传）
+问题.md
+
+# 原始配置文件（含密钥，不上传）
+config_raw.toml
+config_cc_switch.toml
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.trae/
