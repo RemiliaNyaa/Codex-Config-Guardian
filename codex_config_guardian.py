@@ -81,13 +81,14 @@ PROXY_MARKERS = ("PROXY_MANAGED", "127.0.0.1:1572")
 def setup_logging(verbose: bool = False):
     GUARDIAN_DIR.mkdir(parents=True, exist_ok=True)
     level = logging.DEBUG if verbose else logging.INFO
+    handlers = [logging.FileHandler(LOG_PATH, encoding="utf-8")]
+    # pythonw.exe 下 sys.stdout 为 None，不能加 StreamHandler
+    if sys.stdout is not None:
+        handlers.append(logging.StreamHandler(sys.stdout))
     logging.basicConfig(
         level=level,
         format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler(LOG_PATH, encoding="utf-8"),
-            logging.StreamHandler(sys.stdout),
-        ],
+        handlers=handlers,
     )
 
 
