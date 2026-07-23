@@ -2,6 +2,10 @@
 
 保护 Codex `config.toml` 中的用户设置不被 cc-switch 全量覆盖。
 
+> **适用版本：cc-switch v3.17.0**
+>
+> 本脚本的检测机制依赖 cc-switch 的特定标记（`PROXY_MANAGED`、本地代理端口 `127.0.0.1:1572`、代理字段白名单等）。不同版本的 cc-switch 可能使用不同的标记或字段，如遇版本更新导致失效，需相应调整 `PROXY_MANAGED_TOP_KEYS`、`PROXY_MARKERS` 等配置。
+
 ## 问题背景
 
 cc-switch 在代理接管 / 热切换 / 完整重启时，会使用数据库中的 provider 模板**全量重写** `~/.codex/config.toml`，导致以下用户自定义内容丢失：
